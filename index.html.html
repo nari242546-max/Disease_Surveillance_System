@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disease Surveillance Dashboard | รพ.สต.</title>
+<style>
+:root{--orange:#ff6b00;--orange2:#ff8a1f;--ink:#17202a;--muted:#6b7280;--bg:#fff8f2;--card:#fff;--line:#eee3d8;--green:#16a34a;--yellow:#eab308;--red:#ef4444;--shadow:0 12px 32px rgba(83,42,8,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Noto Sans Thai",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit}.app{display:flex;min-height:100vh}.side{width:250px;background:#17120e;color:#fff;padding:24px 16px;position:fixed;inset:0 auto 0 0;z-index:5}.brand{display:flex;align-items:center;gap:12px;padding:6px 10px 26px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#ff8a1f,#ff5a00);display:grid;place-items:center;font-size:21px;font-weight:900}.brand b{font-size:15px}.brand small{display:block;color:#a99f97;margin-top:3px}.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#cfc6bf;text-align:left;padding:12px 13px;border-radius:12px;cursor:pointer}.nav button.active,.nav button:hover{background:rgba(255,107,0,.17);color:#fff}.nav .active{box-shadow:inset 3px 0 var(--orange)}.main{margin-left:250px;width:calc(100% - 250px);padding:28px 34px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.eyebrow{color:var(--orange);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.title{font-size:30px;font-weight:900;margin:5px 0}.subtitle{color:var(--muted);font-size:14px}.actions{display:flex;gap:10px;align-items:center}.btn{border:0;border-radius:11px;padding:11px 15px;cursor:pointer;font-weight:800}.btn.orange{background:var(--orange);color:#fff}.btn.light{background:#fff;border:1px solid var(--line);color:var(--ink)}.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(5,minmax(0,1fr))}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.kpi{padding:18px}.kpi .icon{width:38px;height:38px;border-radius:12px;background:#fff0e5;display:grid;place-items:center;color:var(--orange);font-weight:900}.kpi h3{font-size:27px;margin:15px 0 2px}.kpi p{margin:0;color:var(--muted);font-size:13px}.content{grid-template-columns:1.35fr .65fr;margin-top:16px}.panel{padding:20px}.panelhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.panel h2{font-size:17px;margin:0}.panel .hint{font-size:12px;color:var(--muted)}.chart{height:260px;display:flex;align-items:flex-end;gap:12px;padding:10px 8px 0;border-bottom:1px solid var(--line)}.barwrap{height:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px}.bar{width:min(38px,65%);border-radius:9px 9px 3px 3px;background:linear-gradient(180deg,var(--orange2),var(--orange));min-height:4px}.barlabel{font-size:11px;color:var(--muted)}.barvalue{font-size:11px;font-weight:800}.map{height:300px;border-radius:15px;background:linear-gradient(145deg,#fff6ed,#fff);border:1px solid var(--line);overflow:hidden;position:relative}.map svg{width:100%;height:100%}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}.twocol{grid-template-columns:1fr 1fr;margin-top:16px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.table th{color:#766d66;font-size:11px;text-transform:uppercase;letter-spacing:.05em}.badge{padding:5px 9px;border-radius:99px;font-size:11px;font-weight:800}.low{background:#eaf8ef;color:#16803c}.medium{background:#fff8d8;color:#9a7800}.high{background:#fff0e5;color:#d45300}.critical{background:#ffe7e7;color:#c72d2d}.screen{display:none}.screen.active{display:block}.login{position:fixed;inset:0;background:rgba(23,18,14,.58);display:none;align-items:center;justify-content:center;z-index:20;padding:20px}.login.show{display:flex}.loginbox{width:min(430px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.loginbox h2{margin:0 0 5px;font-size:25px}.loginbox p{color:var(--muted);font-size:13px;margin:0 0 20px}.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px}.field input{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;outline:none}.field input:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff6b0018}.error{color:#c72d2d;font-size:12px;min-height:18px}.userpill{background:#fff0e5;color:#d45300;padding:8px 11px;border-radius:99px;font-size:12px;font-weight:800}.empty{padding:30px;text-align:center;color:var(--muted)}.mobile{display:none}@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,1fr)}.content,.twocol{grid-template-columns:1fr}}@media(max-width:760px){.side{width:72px;padding:16px 9px}.brand div:not(.logo),.nav button span{display:none}.brand{padding:5px 5px 20px}.main{margin-left:72px;width:calc(100% - 72px);padding:20px 15px}.kpis{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.title{font-size:24px}.subtitle{max-width:240px}.actions .userpill{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand"><div class="logo">✚</div><div><b>EPIDEMIC</b><small>Surveillance OS</small></div></div>
+  <nav class="nav">
+    <button class="active" onclick="showScreen('dashboard',this)">◉ <span>Dashboard</span></button>
+    <button onclick="showScreen('disease',this)">◈ <span>โรคและแนวโน้ม</span></button>
+    <button onclick="showScreen('map',this)">⌖ <span>แผนที่พื้นที่</span></button>
+    <button onclick="openLogin()">▣ <span>รายชื่อผู้ป่วย</span></button>
+    <button onclick="showScreen('report',this)">▤ <span>รายงาน</span></button>
+  </nav>
+</aside>
+<main class="main">
+  <section id="dashboard" class="screen active">
+    <div class="top">
+      <div><div class="eyebrow">Primary Care Intelligence</div><div class="title">Disease Surveillance Dashboard</div><div class="subtitle">ศูนย์เฝ้าระวังโรคระดับชุมชน • รพ.สต.</div></div>
+      <div class="actions"><span id="lastUpdate" class="subtitle">กำลังโหลดข้อมูล…</span><span id="userPill" class="userpill" style="display:none">ADMIN</span><button class="btn orange" onclick="loadAll()">↻ Refresh</button></div>
+    </div>
+    <div class="grid kpis">
+      <div class="card kpi"><div class="icon">Σ</div><h3 id="kCases">—</h3><p>ผู้ป่วยสะสม</p></div>
+      <div class="card kpi"><div class="icon">+</div><h3 id="kNew">—</h3><p>ผู้ป่วยรายใหม่ 7 วัน</p></div>
+      <div class="card kpi"><div class="icon">!</div><h3 id="kAlerts">—</h3><p>พื้นที่เฝ้าระวัง</p></div>
+      <div class="card kpi"><div class="icon">⌖</div><h3 id="kVillages">—</h3><p>หมู่บ้านที่ติดตาม</p></div>
+      <div class="card kpi"><div class="icon">↗</div><h3 id="kRate">—</h3><p>อัตราป่วย / 1,000 คน</p></div>
+    </div>
+    <div class="grid content">
+      <div class="card panel"><div class="panelhead"><div><h2>แนวโน้มผู้ป่วย</h2><div class="hint">จำนวนผู้ป่วยรายสัปดาห์</div></div><select id="diseaseFilter" onchange="renderDashboard()" class="btn light"><option value="ALL">ทุกโรค</option></select></div><div id="trendChart" class="chart"></div></div>
+      <div class="card panel"><div class="panelhead"><div><h2>Risk Map</h2><div class="hint">การกระจายตามหมู่บ้าน</div></div><button class="btn light" onclick="showScreen('map',document.querySelectorAll('.nav button')[2])">ดูเต็มจอ</button></div><div id="miniMap" class="map"></div><div class="legend"><span><i class="dot" style="background:#16a34a"></i>ต่ำ</span><span><i class="dot" style="background:#eab308"></i>เฝ้าระวัง</span><span><i class="dot" style="background:#f97316"></i>สูง</span><span><i class="dot" style="background:#ef4444"></i>วิกฤต</span></div></div>
+    </div>
+    <div class="grid twocol">
+      <div class="card panel"><div class="panelhead"><h2>โรคที่พบมากที่สุด</h2><span class="hint">เรียงตามจำนวนผู้ป่วย</span></div><div id="diseaseTable" class="tablewrap"></div></div>
+      <div class="card panel"><div class="panelhead"><h2>พื้นที่เฝ้าระวัง</h2><span class="hint">ต้องติดตามเป็นพิเศษ</span></div><div id="riskTable" class="tablewrap"></div></div>
+    </div>
+  </section>
+
+  <section id="disease" class="screen"><div class="top"><div><div class="eyebrow">Analytics</div><div class="title">โรคและแนวโน้ม</div><div class="subtitle">วิเคราะห์โรคตามเวลา อายุ เพศ และพื้นที่</div></div></div><div class="card panel"><div id="diseaseFull"></div></div></section>
+  <section id="map" class="screen"><div class="top"><div><div class="eyebrow">Geospatial Surveillance</div><div class="title">แผนที่เฝ้าระวังโรค</div><div class="subtitle">แสดงความเสี่ยงระดับหมู่บ้านจากข้อมูลใน Google Sheet</div></div></div><div class="card panel"><div id="fullMap" class="map" style="height:520px"></div><div class="legend"><span><i class="dot" style="background:#16a34a"></i>ต่ำ</span><span><i class="dot" style="background:#eab308"></i>เฝ้าระวัง</span><span><i class="dot" style="background:#f97316"></i>สูง</span><span><i class="dot" style="background:#ef4444"></i>วิกฤต</span></div></div></section>
+  <section id="report" class="screen"><div class="top"><div><div class="eyebrow">Reporting</div><div class="title">รายงานสถานการณ์</div><div class="subtitle">สรุปตัวเลขเพื่อใช้ประชุมและติดตามงาน</div></div><button class="btn orange" onclick="window.print()">Print / PDF</button></div><div class="card panel" id="reportBox"></div></section>
+  <section id="cases" class="screen"><div class="top"><div><div class="eyebrow">Protected Area</div><div class="title">รายชื่อผู้ป่วย</div><div class="subtitle">ข้อมูลส่วนบุคคลจะแสดงหลังเข้าสู่ระบบเท่านั้น</div></div><button class="btn light" onclick="logout()">ออกจากระบบ</button></div><div class="card panel"><div class="panelhead"><h2>Case Registry</h2><input id="caseSearch" oninput="renderCases()" placeholder="ค้นหา Case ID / โรค / หมู่บ้าน" style="padding:10px 12px;border:1px solid var(--line);border-radius:10px"></div><div id="casesTable" class="tablewrap"></div></div></section>
+</main>
+</div>
+
+<div id="login" class="login">
+  <div class="loginbox">
+    <h2>เข้าสู่ระบบ</h2><p>สำหรับเจ้าหน้าที่ที่ได้รับสิทธิ์ เพื่อดูรายชื่อผู้ป่วย</p>
+    <div class="field"><label>USERNAME</label><input id="username" autocomplete="username" value="admin"></div>
+    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="รหัสผ่าน"></div>
+    <div id="loginError" class="error"></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end"><button class="btn light" onclick="closeLogin()">ยกเลิก</button><button class="btn orange" onclick="login()">เข้าสู่ระบบ</button></div>
+  </div>
+</div>
+
+<script>
+/* ====== CONFIG: ใส่ Web App URL ของ Google Apps Script ตรงนี้ ====== */
+const GAS_URL = "https://script.google.com/macros/s/AKfycbyajmW-I3B1CEm9okn8WoDJzwsxzZrSoBzrCwHQs1FxG0XI-5r0Q4QWi36nWTdwPBz4/exec";
+
+let DATA={summary:{},cases:[],villages:[],trend:[],diseases:[]};
+let loggedIn=sessionStorage.getItem("ds_admin")==="1";
+
+function gasUrl(action,params={}){
+  const u=new URL(GAS_URL);
+  u.searchParams.set("action",action);
+  Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));
+  return u.toString();
+}
+function jsonp(url){
+  return new Promise((resolve,reject)=>{
+    const cb="cb_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    const s=document.createElement("script");
+    const timer=setTimeout(()=>{cleanup();reject(new Error("หมดเวลาเชื่อมต่อ Google Apps Script"))},15000);
+    function cleanup(){clearTimeout(timer);delete window[cb];s.remove()}
+    window[cb]=(data)=>{cleanup();resolve(data)};
+    s.src=url+"&callback="+cb;
+    s.onerror=()=>{cleanup();reject(new Error("เชื่อมต่อ GAS ไม่สำเร็จ"))};
+    document.body.appendChild(s);
+  });
+}
+async function loadAll(){
+  try{
+    const [summary,cases,villages,trend,diseases]=await Promise.all([
+      jsonp(gasUrl("summary")), jsonp(gasUrl("cases")), jsonp(gasUrl("villages")), jsonp(gasUrl("trend")), jsonp(gasUrl("diseases"))
+    ]);
+    DATA={summary:summary.data||{},cases:cases.data||[],villages:villages.data||[],trend:trend.data||[],diseases:diseases.data||[]};
+    fillDiseaseFilter(); renderDashboard(); renderDisease(); renderMap(); renderReport();
+    document.getElementById("lastUpdate").textContent="อัปเดต "+new Date().toLocaleString("th-TH");
+  }catch(e){
+    document.getElementById("lastUpdate").textContent="เชื่อมต่อไม่ได้";
+    console.error(e);
+    alert("ไม่สามารถโหลดข้อมูลจาก GAS ได้\nตรวจสอบ GAS_URL และการ Deploy Web App");
+  }
+}
+function showScreen(id,btn){
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+  if(btn)btn.classList.add("active");
+  if(id==="cases"&&!loggedIn){openLogin();showScreen("dashboard",document.querySelector(".nav button"));return}
+}
+function openLogin(){document.getElementById("login").classList.add("show");document.getElementById("password").focus()}
+function closeLogin(){document.getElementById("login").classList.remove("show");document.getElementById("loginError").textContent=""}
+function login(){
+  const u=document.getElementById("username").value.trim(),p=document.getElementById("password").value;
+  if(u==="admin"&&p==="1234"){
+    loggedIn=true;sessionStorage.setItem("ds_admin","1");document.getElementById("userPill").style.display="inline-block";closeLogin();
+    showScreen("cases",document.querySelectorAll(".nav button")[3]);renderCases();
+  }else document.getElementById("loginError").textContent="Username หรือ Password ไม่ถูกต้อง";
+}
+function logout(){loggedIn=false;sessionStorage.removeItem("ds_admin");document.getElementById("userPill").style.display="none";showScreen("dashboard",document.querySelector(".nav button"))}
+function fillDiseaseFilter(){
+  const s=document.getElementById("diseaseFilter"),old=s.value;
+  s.innerHTML='<option value="ALL">ทุกโรค</option>'+DATA.diseases.map(x=>`<option value="${esc(x.disease)}">${esc(x.disease)}</option>`).join("");
+  s.value=old||"ALL";
+}
+function renderDashboard(){
+  const s=DATA.summary||{};
+  document.getElementById("kCases").textContent=fmt(s.totalCases);
+  document.getElementById("kNew").textContent=fmt(s.newCases7d);
+  document.getElementById("kAlerts").textContent=fmt(s.alertVillages);
+  document.getElementById("kVillages").textContent=fmt(s.villageCount);
+  document.getElementById("kRate").textContent=s.ratePer1000==null?"—":Number(s.ratePer1000).toFixed(1);
+  const selected=document.getElementById("diseaseFilter").value;
+  const arr=DATA.trend.filter(x=>selected==="ALL"||x.disease===selected);
+  const grouped={};arr.forEach(x=>grouped[x.week]=(grouped[x.week]||0)+Number(x.cases||0));
+  const vals=Object.entries(grouped).slice(-8);const max=Math.max(1,...vals.map(x=>x[1]));
+  document.getElementById("trendChart").innerHTML=vals.length?vals.map(([w,v])=>`<div class="barwrap"><div class="barvalue">${v}</div><div class="bar" style="height:${Math.max(3,v/max*82)}%"></div><div class="barlabel">${esc(w)}</div></div>`).join(""):'<div class="empty">ยังไม่มีข้อมูลแนวโน้ม</div>';
+  document.getElementById("diseaseTable").innerHTML=table(["โรค","ผู้ป่วย","สัดส่วน"],DATA.diseases.slice(0,7).map(x=>[esc(x.disease),fmt(x.cases),pct(x.cases,s.totalCases)]));
+  const risks=DATA.villages.filter(x=>Number(x.cases)>0).sort((a,b)=>Number(b.cases)-Number(a.cases)).slice(0,7);
+  document.getElementById("riskTable").innerHTML=table(["หมู่บ้าน","ผู้ป่วย","ระดับ"],risks.map(x=>[esc(x.village),fmt(x.cases),`<span class="badge ${riskClass(x.risk)}">${esc(x.risk||riskFromCases(x.cases))}</span>`]));
+  document.getElementById("miniMap").innerHTML=mapSvg(DATA.villages);
+}
+function renderDisease(){
+  document.getElementById("diseaseFull").innerHTML=`<div class="grid twocol" style="margin-top:0"><div><h2>อันดับโรค</h2>${table(["โรค","Cases"],DATA.diseases.map(x=>[esc(x.disease),fmt(x.cases)]))}</div><div><h2>แนวโน้ม 8 สัปดาห์</h2><div class="chart" style="height:300px">${renderTrendBars(DATA.trend)}</div></div></div>`;
+}
+function renderTrendBars(arr){
+  const g={};arr.forEach(x=>g[x.week]=(g[x.week]||0)+Number(x.cases||0));const vals=Object.entries(g).slice(-8),max=Math.max(1,...vals.map(x=>x[1]));
+  return vals.map(([w,v])=>`<div class="barwrap"><div class="barvalue">${v}</div><div class="bar" style="height:${Math.max(3,v/max*82)}%"></div><div class="barlabel">${esc(w)}</div></div>`).join("");
+}
+function renderMap(){document.getElementById("fullMap").innerHTML=mapSvg(DATA.villages,true)}
+function mapSvg(villages,full=false){
+  const W=900,H=full?500:300, pad=55;
+  const pts=villages.map((v,i)=>{let x=Number(v.x),y=Number(v.y);if(!isFinite(x)||!isFinite(y)){x=(i*97)%800+50;y=(i*61)%350+60}return {...v,x:Math.max(30,Math.min(870,x)),y:Math.max(35,Math.min(H-35,y))}});
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+  <defs><pattern id="g" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M45 0H0V45" fill="none" stroke="#eadfd5" stroke-width="1"/></pattern></defs>
+  <rect width="100%" height="100%" fill="url(#g)"/><path d="M40 ${H*.72} C180 ${H*.55},270 ${H*.8},410 ${H*.5} S650 ${H*.25},860 ${H*.45}" fill="none" stroke="#ffd3ad" stroke-width="10" opacity=".55"/>
+  ${pts.map(v=>{const c=riskColor(v.risk||riskFromCases(v.cases));return `<g><circle cx="${v.x}" cy="${v.y}" r="${full?13:10}" fill="${c}" opacity=".18"/><circle cx="${v.x}" cy="${v.y}" r="${full?7:5}" fill="${c}"/><text x="${v.x+10}" y="${v.y+4}" font-size="${full?13:10}" fill="#574c43">${esc(v.village||"หมู่บ้าน")} (${Number(v.cases||0)})</text></g>`}).join("")}
+  </svg>`;
+}
+function renderCases(){
+  if(!loggedIn)return;
+  const q=(document.getElementById("caseSearch")?.value||"").toLowerCase();
+  const rows=DATA.cases.filter(x=>Object.values(x).join(" ").toLowerCase().includes(q));
+  document.getElementById("casesTable").innerHTML=table(["Case ID","โรค","วันเริ่มป่วย","หมู่บ้าน","อายุ","เพศ","สถานะ"],rows.map(x=>[esc(x.caseId),esc(x.disease),esc(x.onsetDate),esc(x.village),esc(x.age),esc(x.sex),`<span class="badge ${statusClass(x.status)}">${esc(x.status||"ติดตาม")}</span>`]));
+}
+function renderReport(){
+  const s=DATA.summary||{};document.getElementById("reportBox").innerHTML=`<h2>รายงานสรุปสถานการณ์โรค</h2><p>ช่วงเวลาประเมิน: 7 วันล่าสุด</p><hr><p><b>ผู้ป่วยสะสม:</b> ${fmt(s.totalCases)} ราย &nbsp; <b>รายใหม่:</b> ${fmt(s.newCases7d)} ราย &nbsp; <b>พื้นที่เฝ้าระวัง:</b> ${fmt(s.alertVillages)} หมู่บ้าน</p><p><b>อัตราป่วย:</b> ${s.ratePer1000==null?"—":Number(s.ratePer1000).toFixed(1)} ต่อ 1,000 ประชากร</p><h3>โรคที่พบมากที่สุด</h3>${table(["อันดับ","โรค","ผู้ป่วย"],DATA.diseases.slice(0,10).map((x,i)=>[i+1,esc(x.disease),fmt(x.cases)]))}`;
+}
+function table(headers,rows){if(!rows.length)return '<div class="empty">ยังไม่มีข้อมูล</div>';return `<table class="table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>`}
+function fmt(x){return x==null?"—":Number(x).toLocaleString("th-TH")}
+function pct(a,b){return !b?"0%":(Number(a)/Number(b)*100).toFixed(1)+"%"}
+function riskFromCases(n){n=Number(n||0);return n>=10?"วิกฤต":n>=6?"สูง":n>=3?"เฝ้าระวัง":"ต่ำ"}
+function riskColor(r){return r==="วิกฤต"?"#ef4444":r==="สูง"?"#f97316":r==="เฝ้าระวัง"?"#eab308":"#16a34a"}
+function riskClass(r){return r==="วิกฤต"?"critical":r==="สูง"?"high":r==="เฝ้าระวัง"?"medium":"low"}
+function statusClass(s){return s==="หายแล้ว"?"low":s==="ส่งต่อ"?"high":"medium"}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+if(loggedIn)document.getElementById("userPill").style.display="inline-block";
+loadAll();
+</script>
+</body>
+</html>
